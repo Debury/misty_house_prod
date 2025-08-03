@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  wordpress:
+    volumes:
+      # Mount entire wp-content (so your theme lands in themes/)
+      - ./wp-content:/var/www/html/wp-content:cached
+
+      # Mount MU-plugins from the actual folder name
+      - ./mu_plugins:/var/www/html/wp-content/mu-plugins:cached
+
+      # (other mounts…)
+      - ./uploads:/var/www/html/wp-content/uploads:cached
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+
+    environment:
+      PHP_DISPLAY_ERRORS: 1
+      PHP_XDEBUG_ENABLED: 1
